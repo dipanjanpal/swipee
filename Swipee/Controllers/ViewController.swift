@@ -46,6 +46,18 @@ class ViewController: UIViewController {
     
     
     //MARK: button actions
+    
+    @IBAction func btnResetAction(_ sender: Any) {
+        if totalCards > 0 {
+            for i in 0...(totalCards - 1){
+                let cardToBack = view.viewWithTag(i + 100) ?? UIView()
+                resetCard(cardView: cardToBack)
+            }
+            self.lastSwipeViewtag = (self.totalCards + 100)
+            self.lblCounter.text = "Showing page \(self.totalCards) out of \(self.totalCards)"
+        }
+    }
+    
     @IBAction func buttonBackwardAction(_ sender: Any) {
         if lastSwipeViewtag <= ((totalCards-1) + 100){
             let cardToBack = view.viewWithTag(lastSwipeViewtag) ?? UIView()

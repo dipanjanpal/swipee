@@ -79,13 +79,28 @@
                                     <action selector="buttonBackwardAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OQB-vP-nG6"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8w-HW-2zT">
+                                <rect key="frame" x="236" y="644" width="123" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="123" id="hce-c4-oHm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Reset">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnResetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TQZ-Hv-QX2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="K8w-HW-2zT" firstAttribute="leading" secondItem="uNF-xY-4X7" secondAttribute="trailing" constant="38" id="DEn-P6-FQj"/>
                             <constraint firstItem="uNF-xY-4X7" firstAttribute="leading" secondItem="Rby-dR-qeT" secondAttribute="leading" constant="-12" id="EQa-eY-aCA"/>
                             <constraint firstItem="nRc-Ts-P78" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Ffd-c2-RUE"/>
                             <constraint firstItem="eKP-3k-hx9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="K5c-8b-lOH"/>
+                            <constraint firstItem="K8w-HW-2zT" firstAttribute="centerY" secondItem="uNF-xY-4X7" secondAttribute="centerY" id="LH6-Oy-loC"/>
                             <constraint firstItem="Rby-dR-qeT" firstAttribute="top" secondItem="nRc-Ts-P78" secondAttribute="bottom" constant="10" id="QI5-PW-NJz"/>
                             <constraint firstAttribute="bottom" secondItem="eKP-3k-hx9" secondAttribute="bottom" id="V6o-du-fek"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nRc-Ts-P78" secondAttribute="trailing" constant="20" id="bgB-Nw-zIO"/>
@@ -93,6 +108,7 @@
                             <constraint firstItem="Rby-dR-qeT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fXs-Ff-QUn"/>
                             <constraint firstItem="eKP-3k-hx9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="jur-0E-UAR"/>
                             <constraint firstItem="uNF-xY-4X7" firstAttribute="top" secondItem="Rby-dR-qeT" secondAttribute="bottom" constant="15" id="n1W-2v-oek"/>
+                            <constraint firstItem="K8w-HW-2zT" firstAttribute="height" secondItem="uNF-xY-4X7" secondAttribute="height" multiplier="0.979167" id="ndv-Dc-cbp"/>
                             <constraint firstItem="eKP-3k-hx9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xKb-zw-SB1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
