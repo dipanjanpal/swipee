@@ -13,6 +13,9 @@
 		94044455243C7ECC00266C5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94044454243C7ECC00266C5F /* Assets.xcassets */; };
 		94044458243C7ECC00266C5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94044456243C7ECC00266C5F /* LaunchScreen.storyboard */; };
 		94F1ED39243C86590030B94E /* SwipeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1ED38243C86590030B94E /* SwipeeModel.swift */; };
+		94F1ED3C243C89FC0030B94E /* BaseNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1ED3B243C89FC0030B94E /* BaseNetwork.swift */; };
+		94F1ED41243C8A520030B94E /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1ED40243C8A520030B94E /* Common.swift */; };
+		94F1ED43243C8DDA0030B94E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1ED42243C8DDA0030B94E /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		94044457243C7ECC00266C5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94044459243C7ECC00266C5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94F1ED38243C86590030B94E /* SwipeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeeModel.swift; sourceTree = "<group>"; };
+		94F1ED3B243C89FC0030B94E /* BaseNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetwork.swift; sourceTree = "<group>"; };
+		94F1ED40243C8A520030B94E /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		94F1ED42243C8DDA0030B94E /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +62,13 @@
 		9404444A243C7ECB00266C5F /* Swipee */ = {
 			isa = PBXGroup;
 			children = (
+				94F1ED44243C90230030B94E /* Controllers */,
+				94F1ED3D243C8A2C0030B94E /* Common */,
+				94F1ED3A243C89DD0030B94E /* BaseNetwork */,
 				94F1ED37243C863C0030B94E /* SwipeeModel */,
 				9404444B243C7ECB00266C5F /* AppDelegate.swift */,
-				9404444F243C7ECB00266C5F /* ViewController.swift */,
-				94044451243C7ECB00266C5F /* Main.storyboard */,
+				94F1ED45243C90330030B94E /* Storyboards */,
 				94044454243C7ECC00266C5F /* Assets.xcassets */,
-				94044456243C7ECC00266C5F /* LaunchScreen.storyboard */,
 				94044459243C7ECC00266C5F /* Info.plist */,
 			);
 			path = Swipee;
@@ -73,6 +80,40 @@
 				94F1ED38243C86590030B94E /* SwipeeModel.swift */,
 			);
 			path = SwipeeModel;
+			sourceTree = "<group>";
+		};
+		94F1ED3A243C89DD0030B94E /* BaseNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				94F1ED3B243C89FC0030B94E /* BaseNetwork.swift */,
+			);
+			path = BaseNetwork;
+			sourceTree = "<group>";
+		};
+		94F1ED3D243C8A2C0030B94E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				94F1ED40243C8A520030B94E /* Common.swift */,
+				94F1ED42243C8DDA0030B94E /* Reachability.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		94F1ED44243C90230030B94E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9404444F243C7ECB00266C5F /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		94F1ED45243C90330030B94E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				94044451243C7ECB00266C5F /* Main.storyboard */,
+				94044456243C7ECC00266C5F /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,7 +188,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				94044450243C7ECB00266C5F /* ViewController.swift in Sources */,
+				94F1ED3C243C89FC0030B94E /* BaseNetwork.swift in Sources */,
+				94F1ED43243C8DDA0030B94E /* Reachability.swift in Sources */,
 				9404444C243C7ECB00266C5F /* AppDelegate.swift in Sources */,
+				94F1ED41243C8A520030B94E /* Common.swift in Sources */,
 				94F1ED39243C86590030B94E /* SwipeeModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
