@@ -17,6 +17,9 @@ class ViewController: UIViewController {
     var divisor = CGFloat()
     var lastSwipeViewtag = Int()
     var totalCards = Int()
+    
+    
+    //MARK: view lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,11 +42,18 @@ class ViewController: UIViewController {
         
     }
     
+    
+    //MARK: button actions
     @IBAction func buttonBackwardAction(_ sender: Any) {
-        let cardToBack = view.viewWithTag(lastSwipeViewtag) ?? UIView()
-        resetCard(cardView: cardToBack)
-        lastSwipeViewtag = lastSwipeViewtag + 1
-        lblCounter.text = "Showing \((lastSwipeViewtag - 100)) out of \(self.totalCards)"
+        if lastSwipeViewtag <= ((totalCards-1) + 100){
+            let cardToBack = view.viewWithTag(lastSwipeViewtag) ?? UIView()
+            resetCard(cardView: cardToBack)
+            lastSwipeViewtag = lastSwipeViewtag + 1
+        }
+        else{
+            Common.alert(message: "You are at latest page.\nTry swiping some", vc: self)
+        }
+        
     }
     
     @objc func panView(_ sender: UIPanGestureRecognizer) {
@@ -58,38 +68,53 @@ class ViewController: UIViewController {
             
             if cardView.center.x < 75 {
                 // move to left side
-                UIView.animate(withDuration: 0.3) {
+                UIView.animate(withDuration: 0.3, animations: {
                     cardView.center = CGPoint(x: cardView.center.x - 200, y: cardView.center.y + 75)
                     cardView.alpha = 0
-                    print("left ==>",cardView.tag)
+                }) { (_) in
+                    self.lastSwipeViewtag = cardView.tag
+                    DispatchQueue.main.async {
+                        self.lblCounter.text = "Showing page \(self.lastSwipeViewtag - 100) out of \(self.totalCards)"
+                    }
                 }
-                lastSwipeViewtag = cardView.tag
                 return
             }
             else if cardView.center.x > (view.frame.width - 75){
-                UIView.animate(withDuration: 0.3) {
+                
+                UIView.animate(withDuration: 0.3, animations: {
                     cardView.center = CGPoint(x: cardView.center.x + 200, y: cardView.center.y + 75)
                     cardView.alpha = 0
-                    print("right ==>",cardView.tag)
+                }) { (_) in
+                    self.lastSwipeViewtag = cardView.tag
+                    DispatchQueue.main.async {
+                        self.lblCounter.text = "Showing page \(self.lastSwipeViewtag - 100) out of \(self.totalCards)"
+                    }
                 }
-                lastSwipeViewtag = cardView.tag
+                
                 return
             }
             
             let viewToReset = view.viewWithTag(cardView.tag) ?? UIView()
             resetCard(cardView: viewToReset)
         }
-        
     }
     
+    
     func resetCard(cardView : UIView){
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.3, animations: {
             cardView.center = self.viewBasecard.center
             cardView.alpha = 1
             cardView.transform = .identity
+        }) { (_) in
+            DispatchQueue.main.async {
+                self.lblCounter.text = "Showing page \(self.lastSwipeViewtag - 100) out of \(self.totalCards)"
+            }
         }
+        
     }
     
+    
+    // create stack of views and labels to swipe
     func createSwipableView(text : String, tag : Int){
         
         let viewNew = UIView()
@@ -97,7 +122,7 @@ class ViewController: UIViewController {
         viewNew.layer.borderColor = UIColor.orange.cgColor
         viewNew.layer.borderWidth = 2.0
         viewNew.layer.cornerRadius = 10
-        viewNew.tag = 100 + tag
+        viewNew.tag = 100 + tag //adding an arbitary number 100 so that we can have unique tags for newly created swipe views
         viewNew.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(viewNew)
         viewNew.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
@@ -134,6 +159,7 @@ class ViewController: UIViewController {
                 {
                     self.totalCards = model?.data?.count ?? 0
                     self.lblCounter.text = "Showing \(self.totalCards) out of \(self.totalCards)"
+                    self.lastSwipeViewtag = (self.totalCards + 100) //adding an arbitary number 100 so that we can have unique tags for newly created swipe views. Here we are setting lastSwipeViewtag to the latest page's tag.
                     for i in 0...(self.totalCards - 1){
                         self.createSwipableView(text: model?.data?[i].text ?? "", tag: i)
                     }
