@@ -8,22 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		9404444C243C7ECB00266C5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404444B243C7ECB00266C5F /* AppDelegate.swift */; };
-		9404444E243C7ECB00266C5F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404444D243C7ECB00266C5F /* SceneDelegate.swift */; };
 		94044450243C7ECB00266C5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404444F243C7ECB00266C5F /* ViewController.swift */; };
 		94044453243C7ECB00266C5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94044451243C7ECB00266C5F /* Main.storyboard */; };
 		94044455243C7ECC00266C5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94044454243C7ECC00266C5F /* Assets.xcassets */; };
 		94044458243C7ECC00266C5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94044456243C7ECC00266C5F /* LaunchScreen.storyboard */; };
+		94F1ED39243C86590030B94E /* SwipeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1ED38243C86590030B94E /* SwipeeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		94044448243C7ECB00266C5F /* Swipee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swipee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9404444B243C7ECB00266C5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9404444D243C7ECB00266C5F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9404444F243C7ECB00266C5F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		94044452243C7ECB00266C5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		94044454243C7ECC00266C5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94044457243C7ECC00266C5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94044459243C7ECC00266C5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94F1ED38243C86590030B94E /* SwipeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +56,8 @@
 		9404444A243C7ECB00266C5F /* Swipee */ = {
 			isa = PBXGroup;
 			children = (
+				94F1ED37243C863C0030B94E /* SwipeeModel */,
 				9404444B243C7ECB00266C5F /* AppDelegate.swift */,
-				9404444D243C7ECB00266C5F /* SceneDelegate.swift */,
 				9404444F243C7ECB00266C5F /* ViewController.swift */,
 				94044451243C7ECB00266C5F /* Main.storyboard */,
 				94044454243C7ECC00266C5F /* Assets.xcassets */,
@@ -65,6 +65,14 @@
 				94044459243C7ECC00266C5F /* Info.plist */,
 			);
 			path = Swipee;
+			sourceTree = "<group>";
+		};
+		94F1ED37243C863C0030B94E /* SwipeeModel */ = {
+			isa = PBXGroup;
+			children = (
+				94F1ED38243C86590030B94E /* SwipeeModel.swift */,
+			);
+			path = SwipeeModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,7 +148,7 @@
 			files = (
 				94044450243C7ECB00266C5F /* ViewController.swift in Sources */,
 				9404444C243C7ECB00266C5F /* AppDelegate.swift in Sources */,
-				9404444E243C7ECB00266C5F /* SceneDelegate.swift in Sources */,
+				94F1ED39243C86590030B94E /* SwipeeModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +294,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Swipee/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -293,7 +302,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dipanjanpal.Swipee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -303,6 +312,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Swipee/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -310,7 +320,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dipanjanpal.Swipee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
