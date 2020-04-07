@@ -27,6 +27,8 @@ class ViewController: UIViewController {
         lblBaseView.text = "That's all folks!"
         lblCounter.text = "Showing page 0 out of 0"
         
+        //0.61 is in radian which equals 35 degrees. since transformation angle accept value in radians only.
+        // we want the view to rotate about 0.61 at the right most and left most point. But at the middel of the screen(width/2) it should have rotation angle to 0 and when the drag increases the rotation angle should increase to 0.61.
         divisor = (view.frame.width / 2) / 0.61
         
         
@@ -57,54 +59,71 @@ class ViewController: UIViewController {
     }
     
     @objc func panView(_ sender: UIPanGestureRecognizer) {
-        let cardView = sender.view ?? UIView()
-        let point = sender.translation(in: view)
-        let xFromCenter = cardView.center.x - view.center.x
         
-        cardView.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
-        cardView.transform = CGAffineTransform(rotationAngle: xFromCenter/divisor)
+        let cardView = sender.view ?? UIView() // the view the gesture is attached to. set by adding the recognizer to a UIView using the addGestureRecognizer: method
         
-        if sender.state == UIGestureRecognizer.State.ended{
+        let point = sender.translation(in: view) // how far your finger has moved when you swipe
+        
+        let xFromCenter = cardView.center.x - view.center.x // to identify the amount of movement of cardView in x direction relative to it's parent view. So, that we can detect it's movement direction is left or right.
+        
+        cardView.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y) // making new center for the cardview relative to it's parent view and the point upto we dragged.It will allow to move the card around the screen.
+        
+        cardView.transform = CGAffineTransform(rotationAngle: xFromCenter/divisor) // tilt a card to a certain degree. Here it's increasing and decreasing the tilt angle based on the position from X center .
+        
+        if sender.state == UIGestureRecognizer.State.ended{ // detect we have done dragging
             
+            //animate the card off the screen if it passes a certain point. Assuming 75 points here. So, if it's get 75 points left or right we will continue animating off the screen right or left.
             if cardView.center.x < 75 {
-                // move to left side
+                // move to left side of the screen
                 UIView.animate(withDuration: 0.3, animations: {
-                    cardView.center = CGPoint(x: cardView.center.x - 200, y: cardView.center.y + 75)
+                    
+                    cardView.center = CGPoint(x: cardView.center.x - 200, y: cardView.center.y + 75) // sending the card to further left in x direction by 200 points after it crosses 75 points to the left
+                    //adding 75 point to y gives a little fall effect downwards
+                    
                     cardView.alpha = 0
+                    
                 }) { (_) in
+                    
                     self.lastSwipeViewtag = cardView.tag
+                    
                     DispatchQueue.main.async {
                         self.lblCounter.text = "Showing page \(self.lastSwipeViewtag - 100) out of \(self.totalCards)"
                     }
                 }
-                return
+                
+                return // so the resetCard code don't get called
             }
-            else if cardView.center.x > (view.frame.width - 75){
-                
+            else if cardView.center.x > (view.frame.width - 75) { //to detect 75 to the right side of the screen
+                // move to right side of the screen
                 UIView.animate(withDuration: 0.3, animations: {
-                    cardView.center = CGPoint(x: cardView.center.x + 200, y: cardView.center.y + 75)
+                    
+                    cardView.center = CGPoint(x: cardView.center.x + 200, y: cardView.center.y + 75)// sending the card to further right in x direction by 200 points after it crosses 75 points to the right
+                    //adding 75 point to y gives a little fall effect downwards
+                    
                     cardView.alpha = 0
                 }) { (_) in
+                    
                     self.lastSwipeViewtag = cardView.tag
+                    
                     DispatchQueue.main.async {
                         self.lblCounter.text = "Showing page \(self.lastSwipeViewtag - 100) out of \(self.totalCards)"
                     }
                 }
                 
-                return
+                return // so the resetCard code don't get called
             }
             
             let viewToReset = view.viewWithTag(cardView.tag) ?? UIView()
-            resetCard(cardView: viewToReset)
+            resetCard(cardView: viewToReset) // reset to main position if the cardView doesn't go left or right by 75 points or more
         }
     }
     
     
     func resetCard(cardView : UIView){
         UIView.animate(withDuration: 0.3, animations: {
-            cardView.center = self.viewBasecard.center
+            cardView.center = self.viewBasecard.center // resets cardview center to where it belonged
             cardView.alpha = 1
-            cardView.transform = .identity
+            cardView.transform = .identity // resets the tilt angle for cardView
         }) { (_) in
             DispatchQueue.main.async {
                 self.lblCounter.text = "Showing page \(self.lastSwipeViewtag - 100) out of \(self.totalCards)"
@@ -158,7 +177,7 @@ class ViewController: UIViewController {
                 if !(model?.data?.isEmpty ?? false)
                 {
                     self.totalCards = model?.data?.count ?? 0
-                    self.lblCounter.text = "Showing \(self.totalCards) out of \(self.totalCards)"
+                    self.lblCounter.text = "Showing page \(self.totalCards) out of \(self.totalCards)"
                     self.lastSwipeViewtag = (self.totalCards + 100) //adding an arbitary number 100 so that we can have unique tags for newly created swipe views. Here we are setting lastSwipeViewtag to the latest page's tag.
                     for i in 0...(self.totalCards - 1){
                         self.createSwipableView(text: model?.data?[i].text ?? "", tag: i)
